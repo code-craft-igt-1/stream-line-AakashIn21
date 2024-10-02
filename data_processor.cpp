@@ -71,13 +71,13 @@ void printMovingAverageInParamStream(vector<double>& sensorValues) {
     movingSpo2Sum += sensorValues[2];
 
     if(temperatureQueue.size() == movingAverageDataLimit) {
-        double temperatureMovingAveage = movingTemperatureSum / movingAverageDataLimit;
-        double pulseRateMovingAveage = movingPulseRateSum / movingAverageDataLimit;
-        double spo2MovingAveage = movingSpo2Sum / movingAverageDataLimit;
+        double temperatureMovingAverage = movingTemperatureSum / movingAverageDataLimit;
+        double pulseRateMovingAverage = movingPulseRateSum / movingAverageDataLimit;
+        double spo2MovingAverage = movingSpo2Sum / movingAverageDataLimit;
 
-        cout<<"Temperature Moving Average: "<<temperatureMovingAveage<<", ";
-        cout<<"PulseRate Moving Average: "<<pulseRateMovingAveage<<", ";
-        cout<<"Spo2 Moving Average: "<<spo2MovingAveage<<endl;
+        cout<<"Temperature Moving Average: "<<temperatureMovingAverage<<", ";
+        cout<<"PulseRate Moving Average: "<<pulseRateMovingAverage<<", ";
+        cout<<"Spo2 Moving Average: "<<spo2MovingAverage<<endl;
 
         movingTemperatureSum -= temperatureQueue.front();
         movingPulseRateSum -= pulserateQueue.front();
