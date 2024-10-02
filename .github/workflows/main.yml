@@ -1,0 +1,54 @@
+name: Build and Test C++ and Python
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - uses: actions/checkout@v4
+
+    # Step 2: Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+
+    # Step 3: Install Python dependencies
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    # Step 4: Lint Python files with flake8
+    - name: Lint with flake8
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
+
+    # Step 5: Set up C++ (install compiler)
+    - name: Install build tools (g++, make, cmake)
+      run: sudo apt-get install build-essential
+
+    # Step 6: Compile `data_processor.cpp` (Main Program)
+    - name: Build data_processor
+      run: |
+        g++ -std=c++17 -o data_processor main.cpp data_processor.cpp
+
+    # Step 7: Run Python script and pipe the output to `data_processor`
+    - name: Run Python and C++ in pipe
+      run: |
+        python read_sensor_data.py | ./data_processor
+
+    # Step 8: Compile `test_data_processor.cpp` (Unit Tests)
+    - name: Build test_data_processor
+      run: |
+        g++ -std=c++17 -o test_processor test_data_processor.cpp data_processor.cpp
+
+    # Step 9: Run unit tests
+    - name: Run C++ unit tests
+      run: |
+        ./test_processor
