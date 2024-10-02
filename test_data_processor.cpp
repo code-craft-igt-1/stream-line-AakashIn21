@@ -84,7 +84,9 @@ void testMovingAverage() {
     double expectedPulseAvg = (72.15 + 72.25 + 72.35 + 72.45 + 72.55) / 5.0;
     double expectedSpo2Avg = (95.50 + 95.60 + 95.70 + 95.80 + 95.90) / 5.0;
 
-    double actualTempAvg = (movingTemperatureSum + 98.6) / 5;
+    double actualTempAvg = (movingTemperatureSum + 98.6) / 5;  // adding first data again becasue it is being removed in printMovingAverageInParamStream after processing.
+    double actualPulseRateAvg = (movingPulseRateSum + 72.15) / 5;
+    double actualSpo2Avg = (movingSpo2Sum + 95.50) / 5;
     double tolerance = 0.001;  // Define a tolerance for floating-point comparison
     
     assert(fabs(actualTempAvg - expectedTempAvg) < tolerance);
