@@ -2,6 +2,7 @@
 #include <cassert>
 #include <string>
 #include <vector>
+#include <cmath>
 #include "data_processor.h"
 
 void testExtractSensorData() {
