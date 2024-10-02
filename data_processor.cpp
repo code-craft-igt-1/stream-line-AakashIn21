@@ -1,11 +1,4 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <deque>
-#include <algorithm>
-#include <sstream>
-#include <regex>
-#include <climits>
+#include "data_processor.h"
 
 using std::cout;
 using std::cin;
