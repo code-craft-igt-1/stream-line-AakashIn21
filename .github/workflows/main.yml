@@ -36,7 +36,7 @@ jobs:
     # Step 6: Compile `data_processor.cpp` (Main Program)
     - name: Build data_processor
       run: |
-        g++ -std=c++17 -o data_processor data_processor.cpp
+        g++ -std=c++17 -o data_processor main.cpp data_processor.cpp
 
     # Step 7: Run Python script and pipe the output to `data_processor`
     - name: Run Python and C++ in pipe
