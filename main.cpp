@@ -1,4 +1,8 @@
-#include "./data_processor.h"
+#include "data_processor.h"
+
+using std::string;
+using std::vector;
+using std::cin;
 
 int main() {
     string line;
